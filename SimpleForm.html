@@ -17,6 +17,7 @@
             <div>
                 <label for="pass">Enter Password: </label>
                 <input type="password" id="pass" name="pass" placeholder="Enter Password...">
+                <error-output class="pass-error" for="pass"></error-output>
             </div>
             <div>
                 <label for="email">Enter Email: </label>
@@ -84,6 +85,14 @@
                     phoneError.textContent = "";
                 else
                     phoneError.textContent="Phone No is Incorrect";
+            });
+
+            const pass = document.getElementById("pass");
+            const passError = document.querySelector(".pass-error");
+            pass.addEventListener("input",function(){
+                let passRegex = RegExp("^(?=.*\\d)(?=.*[A-Z])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
+                if(passRegex.test(pass.value)) passError.textContent = "";
+                else passError.textContent = "Password is Incorrect"
             });
 
             const salary = document.querySelector('#salary');
